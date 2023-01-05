@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Libro;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PDF;
 
 /**
@@ -18,13 +19,33 @@ class LibroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     
+      //CODIGO ORIGINAL SIN ERRORES
+      public function index(Request $request)
     {
         $libros = Libro::paginate();
-
+        $texto =trim($request->get('texto'));
         return view('libro.index', compact('libros'))
             ->with('i', (request()->input('page', 1) - 1) * $libros->perPage());
     }
+
+   
+
+     /**
+      * 
+         public function index(Request $request)
+    {
+        $texto =trim($request->get('texto'));
+
+        $libros = Libro::paginate();
+        $libros=DB::table('libros')->select('id','id_categoria','nombre')->where('nombre','LIKE','%'.$texto.'%')->orderBy('nombre','asc');
+        return view('libro.index', compact('libros'));
+        //->with('i', (request()->input('page', 1) - 1) * $libros->perPage());
+    }
+
+      */
+    
 
     public function pdf()
     {

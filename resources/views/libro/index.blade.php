@@ -10,6 +10,21 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
+                        <!--  -->
+                        <!--  <form class="row g-3"> -->
+                          <form action="{{route('libros.index')}} method="get">
+                            <div class="col-md-4">
+                                <label for="validationServer01" class="form-label">Busqueda</label>
+                                <input type="text" class="form-control is-valid" id="validationServer01"  required>
+                                <div class="valid-feedback">
+                                </div>
+                            <!--  <div class="col-12"> -->
+                           
+                                <button class="btn btn-primary" type="submit">Buscar</button>
+                            </div>
+                            </form>
+
+                          <!--  -->
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
